@@ -4,6 +4,8 @@
 
 Fork of [pritamworld/DevOps_Kubernetes_exercise9](https://github.com/pritamworld/DevOps_Kubernetes_exercise9).
 
+**Docker Hub image:** [yashzinzuvadiya12/hellodocker](https://hub.docker.com/r/yashzinzuvadiya12/hellodocker)
+
 | Folder | What it holds |
 | --- | --- |
 | [`lab11-Docker/`](lab11-Docker) | Part I: a Flask app, its `requirements.txt` and the `Dockerfile` that builds the `hellodocker` image |
@@ -26,6 +28,16 @@ docker container stop CONTAINER_ID
 
 `curl` returns `Hello Yash!`, the container's hostname (its container ID) and
 `cannot connect to Redis, counter disabled`, because no Redis service runs yet.
+
+## Part I (continued) – Push the image to Docker Hub
+
+```bash
+docker login
+docker tag hellodocker yashzinzuvadiya12/hellodocker:latest
+docker push yashzinzuvadiya12/hellodocker:latest
+docker pull yashzinzuvadiya12/hellodocker:latest     # anyone can now pull and run it
+docker run -p 4000:80 yashzinzuvadiya12/hellodocker:latest
+```
 
 ## Part II – nginx on Kubernetes (Minikube)
 
